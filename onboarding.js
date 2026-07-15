@@ -1741,9 +1741,10 @@ onboardingForm?.addEventListener(
     console.log(JSON.stringify(error, null, 2));
 
     let message =
-                error instanceof Error
-                    ? error.message
-                    : String(error);
+    error?.message ||
+    error?.details ||
+    error?.hint ||
+    JSON.stringify(error);
 
             const lowerMessage =
                 message.toLowerCase();
