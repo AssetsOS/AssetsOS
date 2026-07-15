@@ -1555,8 +1555,10 @@ onboardingSupabase.auth.onAuthStateChange(
 
 window.addEventListener(
     "beforeunload",
-    () => { 
+    () => {
         if (
+            onboardingState
+                .selectedLogoPreviewUrl
         ) {
             URL.revokeObjectURL(
                 onboardingState
@@ -1564,4 +1566,5 @@ window.addEventListener(
             );
         }
     }
-); 
+);
+
