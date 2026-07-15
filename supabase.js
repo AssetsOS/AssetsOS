@@ -40,20 +40,43 @@ if (form) {
                     message
                 }
             ]);
+if (error) {
 
-        if (error) {
+    alert("❌ Reservation failed.\n\n" + error.message);
 
-            alert("❌ Reservation failed.\n\n" + error.message);
+    console.error(error);
 
-            console.error(error);
+    return;
 
-            return;
+}
 
-        }
+// Send email notifications
+try {
 
-        alert("🎉 Thank you for reserving your spot!\n\nWe have received your request.");
+    await fetch("https://imnsyxxnltkwkihppzez.supabase.co/functions/v1/send-reservation-email", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            full_name,
+            email,
+            phone,
+            company,
+            industry,
+            message
+        })
+    });
 
-        form.reset();
+} catch (err) {
+
+    console.error("Email function failed:", err);
+
+}
+
+alert("🎉 Thank you for reserving your spot!\n\nA confirmation email has been sent.");
+
+form.reset();
 
     });
 
