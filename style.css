@@ -1478,3 +1478,329 @@ textarea:focus-visible {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
 }
+/* ==================================================
+   DESIGNED FOR ORGANISATIONS
+================================================== */
+
+.trusted {
+    position: relative;
+    padding: 105px 7%;
+    overflow: hidden;
+    text-align: center;
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(37, 99, 235, 0.13),
+            transparent 45%
+        ),
+        rgba(7, 17, 31, 0.45);
+}
+
+.trusted::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    left: -260px;
+    bottom: -300px;
+    border-radius: 50%;
+    background: rgba(14, 165, 233, 0.12);
+    filter: blur(90px);
+    pointer-events: none;
+}
+
+.trusted .section-heading {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    margin: 0 auto 55px;
+}
+
+.trusted-grid {
+    position: relative;
+    z-index: 2;
+    max-width: 1250px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.trusted-logo {
+    position: relative;
+    min-height: 125px;
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 17px;
+    overflow: hidden;
+    color: #dbeafe;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 30, 57, 0.88),
+            rgba(8, 18, 35, 0.9)
+        );
+    border: 1px solid rgba(56, 189, 248, 0.17);
+    border-radius: 19px;
+    font-size: 16px;
+    font-weight: 650;
+    letter-spacing: -0.2px;
+    text-align: left;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.trusted-logo::before {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    color: #7dd3fc;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(37, 99, 235, 0.22),
+            rgba(14, 165, 233, 0.09)
+        );
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.trusted-logo::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    right: -80px;
+    bottom: -85px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.13);
+    filter: blur(12px);
+}
+
+.trusted-logo:nth-child(1)::before {
+    content: "MB";
+}
+
+.trusted-logo:nth-child(2)::before {
+    content: "ES";
+}
+
+.trusted-logo:nth-child(3)::before {
+    content: "RW";
+}
+
+.trusted-logo:nth-child(4)::before {
+    content: "SA";
+}
+
+.trusted-logo:nth-child(5)::before {
+    content: "TN";
+}
+
+.trusted-logo:nth-child(6)::before {
+    content: "ST";
+}
+
+.trusted-logo:nth-child(7)::before {
+    content: "BC";
+}
+
+.trusted-logo:nth-child(8)::before {
+    content: "MB";
+}
+
+.trusted-logo:nth-child(9)::before {
+    content: "MT";
+}
+
+.trusted-logo:hover {
+    transform: translateY(-7px);
+    border-color: rgba(56, 189, 248, 0.55);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.28),
+        0 0 30px rgba(37, 99, 235, 0.1);
+}
+
+.trusted-note {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    margin: 35px auto 0;
+    padding: 17px 20px;
+    color: #8190aa;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 13px;
+    font-size: 11px;
+    line-height: 1.75;
+}
+
+/* ==================================================
+   ECOSYSTEM CARDS
+================================================== */
+
+#ecosystem {
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(37, 99, 235, 0.09),
+            transparent 42%
+        );
+}
+
+.ecosystem-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ecosystem-card {
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ecosystem-card > i {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 16px;
+    font-size: 25px;
+}
+
+.ecosystem-card .phase-status {
+    margin: 0 0 18px;
+}
+
+.ecosystem-card p {
+    flex-grow: 1;
+}
+
+.ecosystem-card > a {
+    position: relative;
+    z-index: 2;
+    margin-top: 24px;
+    padding: 11px 16px;
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 650;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.ecosystem-card > a:hover {
+    background: rgba(56, 189, 248, 0.1);
+    border-color: #38bdf8;
+}
+
+/* ==================================================
+   COMPARISON SECTION
+================================================== */
+
+#comparison {
+    background: rgba(7, 17, 31, 0.34);
+}
+
+.comparison-grid {
+    max-width: 1050px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.comparison-card {
+    padding: 35px;
+    border-radius: 23px;
+    background: rgba(15, 23, 42, 0.76);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.comparison-card.modern {
+    border-color: rgba(56, 189, 248, 0.35);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14, 116, 144, 0.13),
+            rgba(15, 23, 42, 0.82)
+        );
+}
+
+.comparison-card h3 {
+    margin-bottom: 26px;
+    font-size: 24px;
+}
+
+.comparison-card ul {
+    display: grid;
+    gap: 17px;
+    list-style: none;
+}
+
+.comparison-card li {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #cbd5e1;
+    font-size: 13px;
+}
+
+.comparison-card li i {
+    width: 27px;
+    height: 27px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 11px;
+}
+
+.traditional li i {
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.modern li i {
+    color: #bbf7d0;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+/* ==================================================
+   RESPONSIVE ADDITIONS
+================================================== */
+
+@media (max-width: 980px) {
+    .trusted-grid,
+    .ecosystem-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .trusted-grid,
+    .ecosystem-grid,
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trusted-logo {
+        min-height: 105px;
+    }
+}
