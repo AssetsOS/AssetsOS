@@ -12,7 +12,7 @@
 
     <meta
         name="description"
-        content="AssetsOS dashboard preview for managing organisational assets."
+        content="Secure AssetsOS dashboard for managing organisational assets."
     >
 
     <title>AssetsOS Dashboard</title>
@@ -43,6 +43,16 @@
         href="dashboard.css"
     >
 
+    <style>
+        body {
+            visibility: hidden;
+        }
+
+        body.authenticated {
+            visibility: visible;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -71,7 +81,7 @@
 
                     <span>Workspace</span>
 
-                    <strong>Demo Organisation</strong>
+                    <strong>AssetsOS Organisation</strong>
 
                 </div>
 
@@ -150,6 +160,18 @@
 
             <div class="sidebar-footer">
 
+                <button
+                    id="logoutButton"
+                    class="logout-button"
+                    type="button"
+                >
+
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+                    <span>Sign Out</span>
+
+                </button>
+
                 <a href="index.html">
 
                     <i class="fa-solid fa-arrow-left"></i>
@@ -173,6 +195,7 @@
                         id="mobileMenuButton"
                         type="button"
                         aria-label="Open dashboard menu"
+                        aria-expanded="false"
                     >
 
                         <i class="fa-solid fa-bars"></i>
@@ -223,13 +246,13 @@
                         type="button"
                     >
 
-                        <span>SN</span>
+                        <span>AU</span>
 
                         <div>
 
-                            <strong>Siyabonga</strong>
+                            <strong>Authenticated User</strong>
 
-                            <small>Administrator</small>
+                            <small>AssetsOS User</small>
 
                         </div>
 
@@ -246,7 +269,7 @@
                     <div>
 
                         <h2>
-                            Good morning
+                            Welcome to AssetsOS
                         </h2>
 
                         <p>
@@ -576,10 +599,10 @@
 
                                 <div>
 
-                                    <strong>Workspace created</strong>
+                                    <strong>Workspace ready</strong>
 
                                     <p>
-                                        Your AssetsOS workspace is ready.
+                                        Your authenticated dashboard is available.
                                     </p>
 
                                 </div>
@@ -598,10 +621,10 @@
 
                                 <div>
 
-                                    <strong>Administrator account ready</strong>
+                                    <strong>Secure session active</strong>
 
                                     <p>
-                                        You have full workspace access.
+                                        Access was verified through Supabase Auth.
                                     </p>
 
                                 </div>
@@ -699,6 +722,9 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="dashboard-auth.js"></script>
     <script src="dashboard.js"></script>
 
 </body>
