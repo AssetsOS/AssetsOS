@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Secure login for the AssetsOS asset management platform."
+    >
+
+    <title>Dashboard Login | AssetsOS</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <section class="login-brand">
+
+            <a
+                href="index.html"
+                class="login-logo"
+            >
+                <i class="fa-solid fa-cubes"></i>
+                <span>AssetsOS</span>
+            </a>
+
+            <div class="brand-content">
+
+                <span class="brand-label">
+                    SECURE CLIENT PORTAL
+                </span>
+
+                <h1>
+                    Manage every organisational asset from one secure workspace.
+                </h1>
+
+                <p>
+                    Sign in to access your AssetsOS dashboard, asset register,
+                    maintenance records and organisational reports.
+                </p>
+
+                <div class="security-points">
+
+                    <div>
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>
+                            Secure Supabase authentication
+                        </span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-user-lock"></i>
+
+                        <span>
+                            Access limited to approved users
+                        </span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        <span>
+                            Protected organisational workspace
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="login-panel">
+
+            <div class="login-card">
+
+                <div class="login-heading">
+
+                    <span>
+                        ASSETSOS DASHBOARD
+                    </span>
+
+                    <h2>
+                        Sign in
+                    </h2>
+
+                    <p>
+                        Enter the credentials assigned to your AssetsOS account.
+                    </p>
+
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="input-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                id="loginEmail"
+                                name="email"
+                                type="email"
+                                placeholder="name@organisation.co.za"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                id="loginPassword"
+                                name="password"
+                                type="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                id="passwordToggle"
+                                class="password-toggle"
+                                type="button"
+                                aria-label="Show password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        id="loginSubmitButton"
+                        class="login-submit"
+                        type="submit"
+                    >
+                        <span>
+                            Sign in securely
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <div
+                        id="loginMessage"
+                        class="login-message"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+                </form>
+
+                <p class="access-note">
+                    Accounts are currently issued only to approved AssetsOS
+                    early-access organisations.
+                </p>
+
+                <a
+                    href="index.html#reserve"
+                    class="access-link"
+                >
+                    Request early access
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+</html>
