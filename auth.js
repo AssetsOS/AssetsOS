@@ -23,10 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("loginForm");
 
     const emailInput =
-        document.getElementById("email");
+    document.getElementById("loginEmail");
 
     const passwordInput =
-        document.getElementById("password");
+    document.getElementById("loginPassword");
 
     const loginButton =
         document.getElementById("loginButton");
