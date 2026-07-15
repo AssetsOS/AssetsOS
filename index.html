@@ -1,124 +1,968 @@
-//  =====================================
-// AssetsOS Reservation Integration
-// =====================================
+<!DOCTYPE html>
+<html lang="en">
 
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+<head>
 
-const reserveForm = document.getElementById("reserveForm");
+<meta charset="UTF-8">
 
-if (reserveForm) {
-    reserveForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-        const submitButton = reserveForm.querySelector(
-            'button[type="submit"]'
-        );
+<meta
+name="description"
+content="AssetsOS is an intelligent cloud asset management platform developed by Sibusisiwe Industries (Pty) Ltd.">
 
-        const textInputs = reserveForm.querySelectorAll(
-            'input[type="text"]'
-        );
+<title>AssetsOS | Intelligent Asset Management Platform</title>
 
-        const full_name = textInputs[0]?.value.trim() || "";
-        const company = textInputs[1]?.value.trim() || "";
-        const email =
-            reserveForm.querySelector('input[type="email"]')
-                ?.value.trim() || "";
-        const phone =
-            reserveForm.querySelector('input[type="tel"]')
-                ?.value.trim() || "";
-        const industry =
-            reserveForm.querySelector("select")?.value || "";
-        const message =
-            reserveForm.querySelector("textarea")?.value.trim() || "";
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-        if (!full_name || !email) {
-            alert("Please enter your full name and email address.");
-            return;
-        }
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-        const originalButtonText = submitButton.textContent;
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
-        submitButton.disabled = true;
-        submitButton.textContent = "Submitting...";
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        try {
-            // 1. Save reservation in the waitlist table
-            const { error: databaseError } = await supabaseClient
-                .from("waitlist")
-                .insert({
-                    full_name,
-                    email,
-                    phone,
-                    company,
-                    industry,
-                    message
-                });
+<link
+rel="stylesheet"
+href="style.css">
 
-            if (databaseError) {
-                throw new Error(
-                    `Database error: ${databaseError.message}`
-                );
-            }
+</head>
 
-            console.log("Reservation saved successfully.");
+<body>
 
-            // 2. Call the email Edge Function
-            const { data: emailResult, error: functionError } =
-                await supabaseClient.functions.invoke(
-                    "send-reservation-email",
-                    {
-                        body: {
-                            full_name,
-                            email,
-                            phone,
-                            company,
-                            industry,
-                            message
-                        }
-                    }
-                );
+<div class="background-blur one"></div>
+<div class="background-blur two"></div>
 
-            if (functionError) {
-                console.error(
-                    "Email function failed:",
-                    functionError
-                );
+<header id="header">
 
-                alert(
-                    "Your reservation was saved successfully, but the confirmation email could not be sent yet."
-                );
+<div class="logo">
 
-                reserveForm.reset();
-                return;
-            }
+<i class="fa-solid fa-cubes"></i>
 
-            console.log(
-                "Email function response:",
-                emailResult
-            );
+<span>AssetsOS</span>
 
-            alert(
-                "Thank you! Your reservation was saved successfully."
-            );
+</div>
 
-            reserveForm.reset();
+<nav id="nav">
 
-        } catch (error) {
-            console.error("Reservation error:", error);
+<a href="#home">Home</a>
 
-            alert(
-                "Reservation failed.\n\n" +
-                (error instanceof Error
-                    ? error.message
-                    : String(error))
-            );
+<a href="#features">Features</a>
 
-        } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-        }
-    });
-}
+<a href="#industries">Industries</a>
+
+<a href="#roadmap">Roadmap</a>
+
+<a href="#reserve">Early Access</a>
+
+</nav>
+
+<div class="buttons">
+
+<button
+class="login-btn"
+type="button">
+
+Client Login
+
+</button>
+
+<button
+class="primary-btn"
+type="button">
+
+Join Early Access
+
+</button>
+
+</div>
+
+</header>
+
+<section
+class="hero"
+id="home">
+
+<div class="hero-left">
+
+<div class="hero-badge">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<span>
+
+Built for intelligent organisations
+
+</span>
+
+</div>
+
+<h1>
+
+One intelligent operating system for every asset you own.
+
+</h1>
+
+<p>
+
+AssetsOS is a modern cloud platform designed to help organisations register,
+track, maintain and manage physical assets from one secure digital platform.
+
+</p>
+
+<div class="hero-buttons">
+
+<a
+href="#reserve"
+class="cta">
+
+Join Early Access
+
+</a>
+
+<a
+href="#features"
+class="secondary">
+
+Explore Platform
+
+</a>
+
+</div>
+
+<div class="hero-stats">
+
+<div>
+
+<h2>0</h2>
+
+<span>Organisations</span>
+
+</div>
+
+<div>
+
+<h2>0</h2>
+
+<span>Assets Managed</span>
+
+</div>
+
+<div>
+
+<h2>0</h2>
+
+<span>Platform Users</span>
+
+</div>
+
+</div>
+
+<p class="launch-note">
+
+AssetsOS is currently in development.
+All statistics shown represent the current live platform and therefore begin at zero.
+
+</p>
+
+</div>
+
+<div class="hero-right">
+
+<div class="dashboard">
+
+<div class="dashboard-top">
+
+<div>
+
+<span class="dashboard-label">
+
+ASSETSOS PLATFORM
+
+</span>
+
+<h3>
+
+Platform Preview
+
+</h3>
+
+</div>
+
+<div class="status">
+
+Online
+
+</div>
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="box">
+
+<i class="fa-solid fa-boxes-stacked"></i>
+
+<h4>Total Assets</h4>
+
+<h2>0</h2>
+
+<p>No assets registered</p>
+
+</div>
+
+<div class="box">
+
+<i class="fa-solid fa-coins"></i>
+
+<h4>Asset Value</h4>
+
+<h2>R0</h2>
+
+<p>No values recorded</p>
+
+</div>
+
+<div class="box">
+
+<i class="fa-solid fa-screwdriver-wrench"></i>
+
+<h4>Maintenance</h4>
+
+<h2>0</h2>
+
+<p>No scheduled work</p>
+
+</div>
+
+<div class="box">
+
+<i class="fa-solid fa-users"></i>
+
+<h4>Platform Users</h4>
+
+<h2>0</h2>
+
+<p>No registered users</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="workflow">
+
+<div class="section-heading">
+
+<span class="section-tag">
+
+THE ASSETSOS WORKFLOW
+
+</span>
+
+<h2>
+
+Manage every asset from acquisition to retirement.
+
+</h2>
+
+<p>
+
+AssetsOS is being built to simplify the complete lifecycle of physical assets
+through one secure cloud operating system.
+
+</p>
+
+</div>
+
+<div class="workflow-grid">
+
+<div class="workflow-card">
+
+<span>01</span>
+
+<i class="fa-solid fa-file-circle-plus"></i>
+
+<h3>Register</h3>
+
+<p>
+
+Create complete digital records for every asset.
+
+</p>
+
+</div>
+
+<div class="workflow-card">
+
+<span>02</span>
+
+<i class="fa-solid fa-location-dot"></i>
+
+<h3>Track</h3>
+
+<p>
+
+Know where every asset is located.
+
+</p>
+
+</div>
+
+<div class="workflow-card">
+
+<span>03</span>
+
+<i class="fa-solid fa-chart-line"></i>
+
+<h3>Monitor</h3>
+
+<p>
+
+Monitor asset health and utilisation.
+
+</p>
+
+</div>
+
+<div class="workflow-card">
+
+<span>04</span>
+
+<i class="fa-solid fa-gears"></i>
+
+<h3>Maintain</h3>
+
+<p>
+
+Schedule maintenance before failures happen.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="features">
+
+<div class="section-heading">
+
+<span class="section-tag">
+
+PLATFORM CAPABILITIES
+
+</span>
+
+<h2>
+
+Everything your organisation needs in one platform.
+
+</h2>
+
+<p>
+
+AssetsOS combines asset management,
+maintenance,
+documentation,
+tracking
+and reporting into one secure operating system.
+
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-boxes-stacked"></i>
+
+<h3>
+
+Asset Register
+
+</h3>
+
+<p>
+
+Store detailed records for every asset.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-location-crosshairs"></i>
+
+<h3>
+
+Asset Tracking
+
+</h3>
+
+<p>
+
+Track locations and departments responsible.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-qrcode"></i>
+
+<h3>
+
+QR Identification
+
+</h3>
+
+<p>
+
+Assign QR codes for instant identification.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-folder-open"></i>
+
+<h3>
+
+Document Storage
+
+</h3>
+
+<p>
+
+Store invoices,
+manuals
+and warranties securely.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<h3>
+
+Maintenance
+
+</h3>
+
+<p>
+
+Schedule preventive maintenance with ease.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<h3>
+
+Reports
+
+</h3>
+
+<p>
+
+Generate operational and management reports.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="industries">
+
+<div class="section-heading">
+
+<span class="section-tag">
+
+WHO WE SERVE
+
+</span>
+
+<h2>
+
+Designed for organisations with valuable assets.
+
+</h2>
+
+<p>
+
+Whether public or private,
+AssetsOS helps organisations gain complete visibility of their physical assets.
+
+</p>
+
+</div>
+
+<div class="industry-grid">
+
+<div class="industry">
+
+<i class="fa-solid fa-building"></i>
+
+<h3>
+
+Businesses
+
+</h3>
+
+</div>
+
+<div class="industry">
+
+<i class="fa-solid fa-landmark"></i>
+
+<h3>
+
+Government
+
+</h3>
+
+</div>
+
+<div class="industry">
+
+<i class="fa-solid fa-city"></i>
+
+<h3>
+
+Municipalities
+
+</h3>
+
+</div>
+
+<div class="industry">
+
+<i class="fa-solid fa-school"></i>
+
+<h3>
+
+Education
+
+</h3>
+
+</div>
+
+<div class="industry">
+
+<i class="fa-solid fa-hospital"></i>
+
+<h3>
+
+Healthcare
+
+</h3>
+
+</div>
+
+<div class="industry">
+
+<i class="fa-solid fa-warehouse"></i>
+
+<h3>
+
+Warehousing
+
+</h3>
+
+</div>
+
+</div>
+
+</section>
+<section id="roadmap">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            PRODUCT ROADMAP
+        </span>
+
+        <h2>
+            Building AssetsOS one phase at a time.
+        </h2>
+
+        <p>
+            We're focusing on building a reliable, enterprise-grade platform
+            before expanding into advanced AI and automation features.
+        </p>
+
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-card current">
+
+            <span class="phase-status">
+                CURRENT
+            </span>
+
+            <h3>Phase 1</h3>
+
+            <p>
+                Marketing website, early access registrations and brand launch.
+            </p>
+
+        </div>
+
+        <div class="timeline-card">
+
+            <span class="phase-status">
+                NEXT
+            </span>
+
+            <h3>Phase 2</h3>
+
+            <p>
+                Authentication, organisations and secure workspaces.
+            </p>
+
+        </div>
+
+        <div class="timeline-card">
+
+            <span class="phase-status">
+                PLANNED
+            </span>
+
+            <h3>Phase 3</h3>
+
+            <p>
+                Asset register, QR labels and document management.
+            </p>
+
+        </div>
+
+        <div class="timeline-card">
+
+            <span class="phase-status">
+                PLANNED
+            </span>
+
+            <h3>Phase 4</h3>
+
+            <p>
+                Maintenance planning, analytics and reporting.
+            </p>
+
+        </div>
+
+        <div class="timeline-card">
+
+            <span class="phase-status">
+                FUTURE
+            </span>
+
+            <h3>Phase 5</h3>
+
+            <p>
+                AI insights, predictive maintenance and enterprise rollout.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="reserve">
+
+    <div class="reserve-layout">
+
+        <div class="reserve-content">
+
+            <span class="section-tag">
+
+                EARLY ACCESS
+
+            </span>
+
+            <h2>
+
+                Register your organisation.
+
+            </h2>
+
+            <p>
+
+                Join the AssetsOS early access programme and help shape the
+                future of intelligent asset management.
+
+            </p>
+
+            <div class="reserve-benefits">
+
+                <div>
+
+                    <i class="fa-solid fa-check"></i>
+
+                    No payment required
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-check"></i>
+
+                    No contract required
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Receive launch updates
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-container">
+
+            <form id="reserveForm">
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>Full Name *</label>
+
+                        <input
+                            id="full_name"
+                            type="text"
+                            required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Email *</label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>Company</label>
+
+                        <input
+                            id="company"
+                            type="text">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Phone</label>
+
+                        <input
+                            id="phone"
+                            type="tel">
+
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Industry</label>
+
+                    <select id="industry">
+
+                        <option value="">
+                            Select Industry
+                        </option>
+
+                        <option>
+                            Business
+                        </option>
+
+                        <option>
+                            Government
+                        </option>
+
+                        <option>
+                            Municipality
+                        </option>
+
+                        <option>
+                            Education
+                        </option>
+
+                        <option>
+                            Healthcare
+                        </option>
+
+                        <option>
+                            Construction
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"></textarea>
+
+                </div>
+
+                <button
+                    type="submit">
+
+                    Reserve My Spot
+
+                </button>
+
+                <div
+                    id="formMessage"
+                    class="form-message">
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+<footer>
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <i class="fa-solid fa-cubes"></i>
+
+                <span>AssetsOS</span>
+
+            </div>
+
+            <p>
+
+                Intelligent Asset Management Platform built for organisations,
+                municipalities and enterprises.
+
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h3>Platform</h3>
+
+            <a href="#features">Features</a>
+
+            <a href="#industries">Industries</a>
+
+            <a href="#roadmap">Roadmap</a>
+
+            <a href="#reserve">Early Access</a>
+
+        </div>
+
+        <div class="footer-company">
+
+            <h3>Company</h3>
+
+            <p>
+
+                A technology product developed by
+
+                <strong>
+
+                    Sibusisiwe Industries (Pty) Ltd
+
+                </strong>
+
+            </p>
+
+            <p>
+
+                South Africa
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>
+
+            © 2026 AssetsOS. All Rights Reserved.
+
+        </p>
+
+        <p>
+
+            Currently in active development.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="config.js"></script>
+
+<script src="script.js"></script>
+
+<script src="supabase.js"></script>
+
+</body>
+
+</html>
