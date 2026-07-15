@@ -2758,3 +2758,63 @@ window.addEventListener(
         updateAssetCreationAvailability();
     }
 );
+// ======================================================
+// FIX: Re-enable Add Asset after startup completes
+// ======================================================
+
+async function finalAssetRegisterStartup() {
+    try {
+        const authenticated = await loadAuthenticatedUser();
+
+        if (!authenticated) {
+            return;
+        }
+
+        const hasOrganisation =
+            await loadOrganisationMembership();
+
+        document.body.classList.add("authenticated");
+
+        if (!hasOrganisation) {
+            refreshOrganisationInterface();
+            assetsLoading?.classList.add("hidden");
+            renderAssets([]);
+            return;
+        }
+
+        await initialiseOrganisationData();
+
+        refreshOrganisationInterface();
+        updateAssetCreationAvailability();
+
+        if (openAssetModalButton) {
+            openAssetModalButton.disabled = false;
+        }
+
+        if (emptyAddAssetButton) {
+            emptyAddAssetButton.disabled = false;
+        }
+
+    } catch (error) {
+        console.error(
+            "AssetsOS startup failed:",
+            error
+        );
+
+        showPageMessage(
+            error instanceof Error
+                ? error.message
+                : "The asset register could not start.",
+            "error"
+        );
+
+        document.body.classList.add("authenticated");
+    }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    window.setTimeout(
+        finalAssetRegisterStartup,
+        300
+    );
+});
