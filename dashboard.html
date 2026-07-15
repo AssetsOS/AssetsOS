@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AssetsOS dashboard preview for managing organisational assets."
+    >
+
+    <title>AssetsOS Dashboard</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <i class="fa-solid fa-cubes"></i>
+
+                <span>AssetsOS</span>
+
+            </div>
+
+            <div class="workspace-card">
+
+                <div class="workspace-icon">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Workspace</span>
+
+                    <strong>Demo Organisation</strong>
+
+                </div>
+
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="#"
+                    class="active"
+                >
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                    <span>Assets</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    <span>Categories</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-qrcode"></i>
+
+                    <span>QR Management</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    <span>Maintenance</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    <span>Reports</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>Users</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>Settings</span>
+
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <a href="index.html">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    <span>Back to Website</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+        <main class="dashboard-main">
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="mobile-menu-button"
+                        id="mobileMenuButton"
+                        type="button"
+                        aria-label="Open dashboard menu"
+                    >
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </button>
+
+                    <div>
+
+                        <span class="page-label">
+                            OVERVIEW
+                        </span>
+
+                        <h1>
+                            Dashboard
+                        </h1>
+
+                    </div>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <label class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            placeholder="Search assets"
+                        >
+
+                    </label>
+
+                    <button
+                        class="icon-button"
+                        type="button"
+                        aria-label="Notifications"
+                    >
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span class="notification-dot"></span>
+
+                    </button>
+
+                    <button
+                        class="profile-button"
+                        type="button"
+                    >
+
+                        <span>SN</span>
+
+                        <div>
+
+                            <strong>Siyabonga</strong>
+
+                            <small>Administrator</small>
+
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+            <section class="dashboard-content">
+
+                <div class="welcome-row">
+
+                    <div>
+
+                        <h2>
+                            Good morning
+                        </h2>
+
+                        <p>
+                            Here is the current status of your organisation's assets.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="add-asset-button"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Asset
+
+                    </button>
+
+                </div>
+
+                <div class="metric-grid">
+
+                    <article class="metric-card">
+
+                        <div class="metric-icon">
+
+                            <i class="fa-solid fa-boxes-stacked"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Total Assets</span>
+
+                            <strong>0</strong>
+
+                            <small>No assets registered</small>
+
+                        </div>
+
+                    </article>
+
+                    <article class="metric-card">
+
+                        <div class="metric-icon">
+
+                            <i class="fa-solid fa-coins"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Asset Value</span>
+
+                            <strong>R0</strong>
+
+                            <small>No values recorded</small>
+
+                        </div>
+
+                    </article>
+
+                    <article class="metric-card">
+
+                        <div class="metric-icon">
+
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Maintenance Due</span>
+
+                            <strong>0</strong>
+
+                            <small>No work currently due</small>
+
+                        </div>
+
+                    </article>
+
+                    <article class="metric-card">
+
+                        <div class="metric-icon">
+
+                            <i class="fa-solid fa-circle-exclamation"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Open Issues</span>
+
+                            <strong>0</strong>
+
+                            <small>No open asset issues</small>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <article class="panel asset-health-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span>ASSET CONDITION</span>
+
+                                <h3>Asset Health</h3>
+
+                            </div>
+
+                            <button type="button">
+
+                                View report
+
+                            </button>
+
+                        </div>
+
+                        <div class="health-content">
+
+                            <div class="health-chart">
+
+                                <div class="health-chart-inner">
+
+                                    <strong>0%</strong>
+
+                                    <span>Tracked</span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="health-legend">
+
+                                <div>
+
+                                    <span class="legend-dot healthy"></span>
+
+                                    <p>Healthy</p>
+
+                                    <strong>0</strong>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="legend-dot warning"></span>
+
+                                    <p>Needs Attention</p>
+
+                                    <strong>0</strong>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="legend-dot critical"></span>
+
+                                    <p>Critical</p>
+
+                                    <strong>0</strong>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="legend-dot unknown"></span>
+
+                                    <p>Not Assessed</p>
+
+                                    <strong>0</strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="panel maintenance-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span>OPERATIONS</span>
+
+                                <h3>Maintenance Overview</h3>
+
+                            </div>
+
+                            <button type="button">
+
+                                View schedule
+
+                            </button>
+
+                        </div>
+
+                        <div class="chart-area">
+
+                            <div class="chart-empty">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                <h4>No maintenance activity yet</h4>
+
+                                <p>
+                                    Scheduled and completed work will appear here.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="panel recent-assets-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span>RECENT RECORDS</span>
+
+                                <h3>Recent Assets</h3>
+
+                            </div>
+
+                            <button type="button">
+
+                                View all
+
+                            </button>
+
+                        </div>
+
+                        <div class="table-wrapper">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>Asset</th>
+
+                                        <th>Category</th>
+
+                                        <th>Location</th>
+
+                                        <th>Status</th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <tr class="empty-table-row">
+
+                                        <td colspan="4">
+
+                                            <div class="empty-state">
+
+                                                <i class="fa-solid fa-box-open"></i>
+
+                                                <strong>No assets registered</strong>
+
+                                                <span>
+                                                    Add your first asset to begin building the register.
+                                                </span>
+
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </article>
+
+                    <article class="panel activity-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span>WORKSPACE</span>
+
+                                <h3>Recent Activity</h3>
+
+                            </div>
+
+                            <button type="button">
+
+                                View history
+
+                            </button>
+
+                        </div>
+
+                        <div class="activity-list">
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon">
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>Workspace created</strong>
+
+                                    <p>
+                                        Your AssetsOS workspace is ready.
+                                    </p>
+
+                                </div>
+
+                                <span>Now</span>
+
+                            </div>
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon">
+
+                                    <i class="fa-solid fa-user-shield"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>Administrator account ready</strong>
+
+                                    <p>
+                                        You have full workspace access.
+                                    </p>
+
+                                </div>
+
+                                <span>Now</span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="panel qr-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span>IDENTIFICATION</span>
+
+                                <h3>QR Management</h3>
+
+                            </div>
+
+                            <button type="button">
+
+                                Open module
+
+                            </button>
+
+                        </div>
+
+                        <div class="qr-content">
+
+                            <div class="qr-visual">
+
+                                <i class="fa-solid fa-qrcode"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>0 QR codes generated</strong>
+
+                                <p>
+                                    Asset QR labels will appear here after creation.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="panel ai-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span>COMING SOON</span>
+
+                                <h3>AI Asset Assistant</h3>
+
+                            </div>
+
+                            <span class="coming-soon-badge">
+                                Planned
+                            </span>
+
+                        </div>
+
+                        <div class="ai-content">
+
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                            <h4>
+                                Ask questions about your assets
+                            </h4>
+
+                            <p>
+                                Planned AI capabilities will help organisations
+                                analyse records, identify risks and prepare reports.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>
