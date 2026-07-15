@@ -8,7 +8,7 @@ const supabaseClient = supabase.createClient(
     SUPABASE_ANON_KEY
 );
 
-// Get the reservation form
+// Reservation Form
 const form = document.getElementById("reserveForm");
 
 if (form) {
@@ -48,7 +48,7 @@ if (form) {
 
         }
 
-        // Call Edge Function to send emails
+        // Send Email via Edge Function
         try {
 
             const response = await fetch(
@@ -56,7 +56,9 @@ if (form) {
                 {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+                        "apikey": SUPABASE_ANON_KEY
                     },
                     body: JSON.stringify({
                         full_name,
@@ -71,18 +73,20 @@ if (form) {
 
             const result = await response.json();
 
-            console.log("Email Function:", result);
+            console.log("Edge Function Response:", result);
 
         } catch (err) {
 
-            console.error("Email Function Error:", err);
+            console.error("Edge Function Error:", err);
 
         }
 
-        alert("🎉 Thank you for reserving your spot!\n\nWe've received your reservation successfully!");
+        alert("🎉 Thank you for reserving your spot!\n\nWe've received your reservation.");
 
         form.reset();
 
     });
+
+}
 
 }
