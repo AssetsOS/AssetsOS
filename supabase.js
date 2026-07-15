@@ -1,92 +1,124 @@
-// ===============================
-// AssetsOS Supabase Integration
-// ===============================
+// =====================================
+// AssetsOS Reservation Integration
+// =====================================
 
-// Create Supabase client
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_ANON_KEY
 );
 
-// Reservation Form
-const form = document.getElementById("reserveForm");
+const reserveForm = document.getElementById("reserveForm");
 
-if (form) {
+if (reserveForm) {
+    reserveForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-    form.addEventListener("submit", async (e) => {
+        const submitButton = reserveForm.querySelector(
+            'button[type="submit"]'
+        );
 
-        e.preventDefault();
+        const textInputs = reserveForm.querySelectorAll(
+            'input[type="text"]'
+        );
 
-        const full_name = form.querySelector('input[type="text"]').value;
-        const email = form.querySelector('input[type="email"]').value;
-        const company = form.querySelectorAll('input[type="text"]')[1].value;
-        const phone = form.querySelector('input[type="tel"]').value;
-        const industry = form.querySelector("select").value;
-        const message = form.querySelector("textarea").value;
+        const full_name = textInputs[0]?.value.trim() || "";
+        const company = textInputs[1]?.value.trim() || "";
+        const email =
+            reserveForm.querySelector('input[type="email"]')
+                ?.value.trim() || "";
+        const phone =
+            reserveForm.querySelector('input[type="tel"]')
+                ?.value.trim() || "";
+        const industry =
+            reserveForm.querySelector("select")?.value || "";
+        const message =
+            reserveForm.querySelector("textarea")?.value.trim() || "";
 
-        // Save reservation to Supabase
-        const { error } = await supabaseClient
-            .from("waitlist")
-            .insert([
-                {
+        if (!full_name || !email) {
+            alert("Please enter your full name and email address.");
+            return;
+        }
+
+        const originalButtonText = submitButton.textContent;
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
+        try {
+            // 1. Save reservation in the waitlist table
+            const { error: databaseError } = await supabaseClient
+                .from("waitlist")
+                .insert({
                     full_name,
                     email,
                     phone,
                     company,
                     industry,
                     message
-                }
-            ]);
+                });
 
-        if (error) {
+            if (databaseError) {
+                throw new Error(
+                    `Database error: ${databaseError.message}`
+                );
+            }
 
-            console.error(error);
+            console.log("Reservation saved successfully.");
 
-            alert("❌ Reservation failed.\n\n" + error.message);
+            // 2. Call the email Edge Function
+            const { data: emailResult, error: functionError } =
+                await supabaseClient.functions.invoke(
+                    "send-reservation-email",
+                    {
+                        body: {
+                            full_name,
+                            email,
+                            phone,
+                            company,
+                            industry,
+                            message
+                        }
+                    }
+                );
 
-            return;
+            if (functionError) {
+                console.error(
+                    "Email function failed:",
+                    functionError
+                );
 
-        }
+                alert(
+                    "Your reservation was saved successfully, but the confirmation email could not be sent yet."
+                );
 
-        // Send Email via Edge Function
-        try {
+                reserveForm.reset();
+                return;
+            }
 
-            const response = await fetch(
-                "https://imnsyxxnltkwkihppzez.supabase.co/functions/v1/send-reservation-email",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-                        "apikey": SUPABASE_ANON_KEY
-                    },
-                    body: JSON.stringify({
-                        full_name,
-                        email,
-                        phone,
-                        company,
-                        industry,
-                        message
-                    })
-                }
+            console.log(
+                "Email function response:",
+                emailResult
             );
 
-            const result = await response.json();
+            alert(
+                "Thank you! Your reservation was saved successfully."
+            );
 
-            console.log("Edge Function Response:", result);
+            reserveForm.reset();
 
-        } catch (err) {
+        } catch (error) {
+            console.error("Reservation error:", error);
 
-            console.error("Edge Function Error:", err);
+            alert(
+                "Reservation failed.\n\n" +
+                (error instanceof Error
+                    ? error.message
+                    : String(error))
+            );
 
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
         }
-
-        alert("🎉 Thank you for reserving your spot!\n\nWe've received your reservation.");
-
-        form.reset();
-
     });
-
-}
-
 }
