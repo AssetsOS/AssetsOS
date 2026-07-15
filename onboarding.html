@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Set up your AssetsOS organisation workspace."
+    >
+
+    <title>Organisation Setup | AssetsOS</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="onboarding.css"
+    >
+</head>
+
+<body style="visibility: hidden;">
+
+    <main class="onboarding-page">
+
+        <aside class="onboarding-sidebar">
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+                <div class="brand-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div>
+                    <strong>AssetsOS</strong>
+                    <span>
+                        Organisation setup
+                    </span>
+                </div>
+            </a>
+
+            <div class="setup-intro">
+
+                <span class="eyebrow">
+                    Workspace onboarding
+                </span>
+
+                <h1>
+                    Configure your organisation before entering AssetsOS.
+                </h1>
+
+                <p>
+                    This information will be used across your
+                    asset register, reports, user management and
+                    future billing settings.
+                </p>
+
+            </div>
+
+            <div class="setup-progress">
+
+                <div
+                    class="progress-step active"
+                    data-step-indicator="1"
+                >
+                    <span>1</span>
+
+                    <div>
+                        <strong>Organisation</strong>
+                        <small>Company details</small>
+                    </div>
+                </div>
+
+                <div
+                    class="progress-step"
+                    data-step-indicator="2"
+                >
+                    <span>2</span>
+
+                    <div>
+                        <strong>Location</strong>
+                        <small>Country and time zone</small>
+                    </div>
+                </div>
+
+                <div
+                    class="progress-step"
+                    data-step-indicator="3"
+                >
+                    <span>3</span>
+
+                    <div>
+                        <strong>Branding</strong>
+                        <small>Optional logo</small>
+                    </div>
+                </div>
+
+                <div
+                    class="progress-step"
+                    data-step-indicator="4"
+                >
+                    <span>4</span>
+
+                    <div>
+                        <strong>Finish</strong>
+                        <small>Review and launch</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Your workspace is protected by Supabase
+                    authentication and organisation-level access.
+                </span>
+            </div>
+
+        </aside>
+
+        <section class="onboarding-content">
+
+            <div class="onboarding-card">
+
+                <div class="mobile-brand">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>AssetsOS</span>
+                </div>
+
+                <div
+                    id="onboardingMessage"
+                    class="onboarding-message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <form
+                    id="onboardingForm"
+                    novalidate
+                >
+
+                    <!-- STEP 1 -->
+
+                    <section
+                        class="form-step active"
+                        data-step="1"
+                    >
+
+                        <div class="step-heading">
+                            <span>Step 1 of 4</span>
+
+                            <h2>
+                                Tell us about your organisation
+                            </h2>
+
+                            <p>
+                                Create the workspace that will own
+                                and manage your AssetsOS records.
+                            </p>
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="input-group full-width">
+                                <label for="organisationName">
+                                    Company or organisation name
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-building"></i>
+
+                                    <input
+                                        type="text"
+                                        id="organisationName"
+                                        placeholder="Enter organisation name"
+                                        autocomplete="organization"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="input-group full-width">
+                                <label for="industry">
+                                    Industry
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-briefcase"></i>
+
+                                    <select
+                                        id="industry"
+                                        required
+                                    >
+                                        <option value="">
+                                            Select industry
+                                        </option>
+
+                                        <option value="Government">
+                                            Government
+                                        </option>
+
+                                        <option value="Education">
+                                            Education
+                                        </option>
+
+                                        <option value="Healthcare">
+                                            Healthcare
+                                        </option>
+
+                                        <option value="Logistics">
+                                            Logistics
+                                        </option>
+
+                                        <option value="Manufacturing">
+                                            Manufacturing
+                                        </option>
+
+                                        <option value="Mining">
+                                            Mining
+                                        </option>
+
+                                        <option value="Retail">
+                                            Retail
+                                        </option>
+
+                                        <option value="Technology">
+                                            Technology
+                                        </option>
+
+                                        <option value="Other">
+                                            Other
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="organisationEmail">
+                                    Organisation email
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-envelope"></i>
+
+                                    <input
+                                        type="email"
+                                        id="organisationEmail"
+                                        placeholder="company@example.com"
+                                        autocomplete="email"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="organisationPhone">
+                                    Organisation phone
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-phone"></i>
+
+                                    <input
+                                        type="tel"
+                                        id="organisationPhone"
+                                        placeholder="+27 ..."
+                                        autocomplete="tel"
+                                    >
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- STEP 2 -->
+
+                    <section
+                        class="form-step"
+                        data-step="2"
+                    >
+
+                        <div class="step-heading">
+                            <span>Step 2 of 4</span>
+
+                            <h2>
+                                Set your location preferences
+                            </h2>
+
+                            <p>
+                                These settings will be used for
+                                currency, reporting and scheduling.
+                            </p>
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label for="country">
+                                    Country
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-earth-africa"></i>
+
+                                    <select
+                                        id="country"
+                                        required
+                                    >
+                                        <option value="">
+                                            Select country
+                                        </option>
+
+                                        <option value="South Africa">
+                                            South Africa
+                                        </option>
+
+                                        <option value="Botswana">
+                                            Botswana
+                                        </option>
+
+                                        <option value="Eswatini">
+                                            Eswatini
+                                        </option>
+
+                                        <option value="Lesotho">
+                                            Lesotho
+                                        </option>
+
+                                        <option value="Mozambique">
+                                            Mozambique
+                                        </option>
+
+                                        <option value="Namibia">
+                                            Namibia
+                                        </option>
+
+                                        <option value="Zimbabwe">
+                                            Zimbabwe
+                                        </option>
+
+                                        <option value="Other">
+                                            Other
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="currency">
+                                    Currency
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-coins"></i>
+
+                                    <select
+                                        id="currency"
+                                        required
+                                    >
+                                        <option value="">
+                                            Select currency
+                                        </option>
+
+                                        <option value="ZAR">
+                                            ZAR — South African Rand
+                                        </option>
+
+                                        <option value="BWP">
+                                            BWP — Botswana Pula
+                                        </option>
+
+                                        <option value="SZL">
+                                            SZL — Lilangeni
+                                        </option>
+
+                                        <option value="LSL">
+                                            LSL — Lesotho Loti
+                                        </option>
+
+                                        <option value="MZN">
+                                            MZN — Mozambican Metical
+                                        </option>
+
+                                        <option value="NAD">
+                                            NAD — Namibian Dollar
+                                        </option>
+
+                                        <option value="USD">
+                                            USD — United States Dollar
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group full-width">
+                                <label for="timezone">
+                                    Time zone
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-clock"></i>
+
+                                    <select
+                                        id="timezone"
+                                        required
+                                    >
+                                        <option value="">
+                                            Select time zone
+                                        </option>
+
+                                        <option value="Africa/Johannesburg">
+                                            Africa/Johannesburg
+                                        </option>
+
+                                        <option value="Africa/Gaborone">
+                                            Africa/Gaborone
+                                        </option>
+
+                                        <option value="Africa/Maputo">
+                                            Africa/Maputo
+                                        </option>
+
+                                        <option value="Africa/Windhoek">
+                                            Africa/Windhoek
+                                        </option>
+
+                                        <option value="UTC">
+                                            UTC
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- STEP 3 -->
+
+                    <section
+                        class="form-step"
+                        data-step="3"
+                    >
+
+                        <div class="step-heading">
+                            <span>Step 3 of 4</span>
+
+                            <h2>
+                                Add organisation branding
+                            </h2>
+
+                            <p>
+                                Uploading a logo is optional. You can
+                                also add or replace it later from Settings.
+                            </p>
+                        </div>
+
+                        <div class="logo-upload-area">
+
+                            <input
+                                type="file"
+                                id="organisationLogo"
+                                accept="image/png,image/jpeg,image/webp"
+                                hidden
+                            >
+
+                            <button
+                                type="button"
+                                id="logoUploadButton"
+                                class="logo-upload-button"
+                            >
+                                <div
+                                    id="logoPreview"
+                                    class="logo-preview"
+                                >
+                                    <i class="fa-regular fa-image"></i>
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Choose organisation logo
+                                    </strong>
+
+                                    <span>
+                                        PNG, JPG or WEBP. Maximum 2 MB.
+                                    </span>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
+                                id="removeLogoButton"
+                                class="remove-logo-button hidden"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                                Remove selected logo
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                    <!-- STEP 4 -->
+
+                    <section
+                        class="form-step"
+                        data-step="4"
+                    >
+
+                        <div class="step-heading">
+                            <span>Step 4 of 4</span>
+
+                            <h2>
+                                Review and create your workspace
+                            </h2>
+
+                            <p>
+                                Confirm the organisation information
+                                before launching AssetsOS.
+                            </p>
+                        </div>
+
+                        <div class="review-card">
+
+                            <div class="review-logo">
+                                <div
+                                    id="reviewLogo"
+                                    class="review-logo-preview"
+                                >
+                                    <i class="fa-regular fa-building"></i>
+                                </div>
+                            </div>
+
+                            <div class="review-grid">
+
+                                <div>
+                                    <span>Organisation</span>
+                                    <strong id="reviewOrganisationName">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Industry</span>
+                                    <strong id="reviewIndustry">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Country</span>
+                                    <strong id="reviewCountry">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Currency</span>
+                                    <strong id="reviewCurrency">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Time zone</span>
+                                    <strong id="reviewTimezone">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Workspace owner</span>
+                                    <strong id="reviewOwner">—</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            id="backButton"
+                            class="secondary-button hidden"
+                        >
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Back
+                        </button>
+
+                        <button
+                            type="button"
+                            id="nextButton"
+                            class="primary-button"
+                        >
+                            Continue
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                        <button
+                            type="submit"
+                            id="finishButton"
+                            class="primary-button hidden"
+                        >
+                            <i class="fa-solid fa-rocket"></i>
+                            Create Workspace
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="logout-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Sign out and use another account
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="config.js"></script>
+
+    <script src="onboarding.js"></script>
+
+</body>
+</html>
