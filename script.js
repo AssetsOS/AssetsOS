@@ -28,8 +28,7 @@ const observer = new IntersectionObserver((entries) => {
     threshold: 0.2
 });
 
-document.querySelectorAll(".card, .industry, .timeline-card, .dashboard")
-.forEach(el => {
+document.querySelectorAll(".card, .industry, .timeline-card, .dashboard").forEach(el => {
     el.classList.add("fade-up");
     observer.observe(el);
 });
