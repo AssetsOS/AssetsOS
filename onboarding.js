@@ -1734,12 +1734,13 @@ onboardingForm?.addEventListener(
             }, 1200);
 
         } catch (error) {
-            console.error(
-                "Workspace creation failed:",
-                error
-            );
 
-            let message =
+    console.error("===== FULL ERROR =====");
+    console.dir(error);
+    console.log(error);
+    console.log(JSON.stringify(error, null, 2));
+
+    let message =
                 error instanceof Error
                     ? error.message
                     : String(error);
