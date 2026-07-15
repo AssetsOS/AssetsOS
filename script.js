@@ -2,7 +2,7 @@
 // AssetsOS JavaScript
 // ===============================
 
-// Smooth scrolling for navigation links
+// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault();
@@ -17,64 +17,43 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Fade-in animation on scroll
+// Fade-in animation
 const observer = new IntersectionObserver((entries) => {
-
     entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-
+        if (entry.isIntersecting) {
             entry.target.classList.add("show");
-
         }
-
     });
-
-},{
-    threshold:0.2
+}, {
+    threshold: 0.2
 });
 
 document.querySelectorAll(".card, .industry, .timeline-card, .dashboard")
-.forEach(el=>{
-
+.forEach(el => {
     el.classList.add("fade-up");
-
     observer.observe(el);
-
 });
 
+// Login button
+const login = document.querySelector(".login-btn");
 
-
-});
-
+if (login) {
+    login.addEventListener("click", () => {
+        alert("Login Portal Coming Soon");
+    });
 }
 
-// Login Button
-const login=document.querySelector(".login-btn");
+// Reserve button
+const reserve = document.querySelector(".primary-btn");
 
-if(login){
+if (reserve) {
+    reserve.addEventListener("click", () => {
+        const reserveSection = document.querySelector("#reserve");
 
-login.addEventListener("click",()=>{
-
-alert("Login Portal Coming Soon");
-
-});
-
-}
-
-// Reserve Button
-const reserve=document.querySelector(".primary-btn");
-
-if(reserve){
-
-reserve.addEventListener("click",()=>{
-
-document.querySelector("#reserve").scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-});
-
+        if (reserveSection) {
+            reserveSection.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    });
 }
