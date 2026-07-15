@@ -654,9 +654,7 @@ const countryDefaults = {
     }
 };
 
-<option value="Africa/Harare">
-    Africa/Harare
-</option>
+
 
 // ======================================================
 // LOGO UPLOAD
