@@ -820,3 +820,28 @@ td {
         flex-direction: column;
     }
 }
+.logout-button {
+    width: 100%;
+    min-height: 42px;
+    margin-bottom: 8px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: #fecaca;
+    background: transparent;
+    border: 1px solid rgba(239, 68, 68, 0.16);
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.logout-button:hover {
+    color: white;
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+.logout-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
