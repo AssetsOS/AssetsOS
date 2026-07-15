@@ -481,4 +481,3 @@ async function redirectExistingUser() {
     }
 }
 
-redirectExistingUser();
