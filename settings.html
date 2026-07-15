@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Manage your AssetsOS organisation, asset categories, departments and locations."
+    >
+
+    <title>Settings | AssetsOS</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="settings.css"
+    >
+</head>
+
+<body style="visibility: hidden;">
+
+    <div class="dashboard-layout">
+
+        <!-- ==========================================
+             SIDEBAR
+        =========================================== -->
+
+        <aside
+            id="sidebar"
+            class="sidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="dashboard.html">
+                    <div class="sidebar-brand-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+                    <span>AssetsOS</span>
+                </a>
+
+            </div>
+
+            <div class="workspace-card">
+
+                <div class="workspace-icon">
+                    <i class="fa-regular fa-building"></i>
+                </div>
+
+                <div>
+                    <span>Workspace</span>
+
+                    <strong id="workspaceName">
+                        Loading...
+                    </strong>
+                </div>
+
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="assets.html">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Assets</span>
+                </a>
+
+                <a
+                    href="settings.html#categories"
+                    data-settings-link="categories"
+                >
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Categories</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-qrcode"></i>
+                    <span>QR Management</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <span>Maintenance</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Users</span>
+                </a>
+
+                <a
+                    href="settings.html"
+                    class="active"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Sign Out</span>
+            </button>
+
+        </aside>
+
+        <!-- ==========================================
+             MAIN CONTENT
+        =========================================== -->
+
+        <main class="dashboard-main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-heading">
+
+                    <button
+                        type="button"
+                        id="mobileMenuButton"
+                        class="mobile-menu-button"
+                        aria-label="Open navigation"
+                        aria-expanded="false"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+                        <span>Administration</span>
+                        <h1>Settings</h1>
+                    </div>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <div class="topbar-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="settingsSearch"
+                            placeholder="Search settings"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <button
+                        type="button"
+                        class="notification-button"
+                        aria-label="Notifications"
+                    >
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+
+                    <div class="profile-summary">
+
+                        <div
+                            id="profileInitials"
+                            class="profile-initials"
+                        >
+                            AU
+                        </div>
+
+                        <div>
+                            <strong id="profileName">
+                                Authenticated User
+                            </strong>
+
+                            <span id="profileRole">
+                                AssetsOS User
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- SETTINGS PAGE -->
+
+            <section class="settings-page">
+
+                <div class="settings-heading">
+
+                    <div>
+                        <span class="settings-eyebrow">
+                            Organisation administration
+                        </span>
+
+                        <h2>
+                            Manage your AssetsOS workspace
+                        </h2>
+
+                        <p>
+                            Update organisation information and manage
+                            the reference data used by your asset register.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    id="settingsPageMessage"
+                    class="settings-page-message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <div class="settings-layout">
+
+                    <!-- SETTINGS NAVIGATION -->
+
+                    <aside class="settings-navigation">
+
+                        <button
+                            type="button"
+                            class="settings-nav-button active"
+                            data-settings-section="organisation"
+                        >
+                            <i class="fa-regular fa-building"></i>
+
+                            <div>
+                                <strong>Organisation</strong>
+                                <span>Company profile and preferences</span>
+                            </div>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-nav-button"
+                            data-settings-section="categories"
+                        >
+                            <i class="fa-solid fa-layer-group"></i>
+
+                            <div>
+                                <strong>Asset Categories</strong>
+                                <span>Manage asset classification</span>
+                            </div>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-nav-button"
+                            data-settings-section="departments"
+                        >
+                            <i class="fa-solid fa-sitemap"></i>
+
+                            <div>
+                                <strong>Departments</strong>
+                                <span>Manage organisational units</span>
+                            </div>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-nav-button"
+                            data-settings-section="locations"
+                        >
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <div>
+                                <strong>Locations</strong>
+                                <span>Manage offices and sites</span>
+                            </div>
+                        </button>
+
+                    </aside>
+
+                    <!-- SETTINGS CONTENT -->
+
+                    <div class="settings-content">
+
+                        <!-- ==================================
+                             ORGANISATION
+                        =================================== -->
+
+                        <section
+                            id="organisationSection"
+                            class="settings-section active"
+                            data-section-panel="organisation"
+                        >
+
+                            <div class="settings-section-header">
+
+                                <div>
+                                    <span>Workspace profile</span>
+                                    <h3>Organisation Information</h3>
+
+                                    <p>
+                                        These details are used across
+                                        dashboards, reports and exported records.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <form
+                                id="organisationSettingsForm"
+                                class="settings-form"
+                                novalidate
+                            >
+
+                                <div
+                                    id="organisationFormMessage"
+                                    class="settings-form-message"
+                                    role="alert"
+                                    aria-live="polite"
+                                ></div>
+
+                                <div class="organisation-branding-row">
+
+                                    <div
+                                        id="organisationLogoPreview"
+                                        class="organisation-logo-preview"
+                                    >
+                                        <i class="fa-regular fa-building"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Organisation logo</strong>
+
+                                        <p>
+                                            Upload a PNG, JPG or WEBP image.
+                                            Maximum file size: 2 MB.
+                                        </p>
+
+                                        <div class="logo-actions">
+
+                                            <input
+                                                type="file"
+                                                id="organisationLogoInput"
+                                                accept="image/png,image/jpeg,image/webp"
+                                                hidden
+                                            >
+
+                                            <button
+                                                type="button"
+                                                id="changeOrganisationLogoButton"
+                                                class="secondary-settings-button"
+                                            >
+                                                <i class="fa-regular fa-image"></i>
+                                                Change Logo
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                id="removeOrganisationLogoButton"
+                                                class="danger-text-button hidden"
+                                            >
+                                                <i class="fa-solid fa-trash"></i>
+                                                Remove
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="settings-form-grid">
+
+                                    <div class="settings-input-group full-width">
+
+                                        <label for="organisationName">
+                                            Organisation name
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="organisationName"
+                                            autocomplete="organization"
+                                            required
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationIndustry">
+                                            Industry
+                                        </label>
+
+                                        <select
+                                            id="organisationIndustry"
+                                            required
+                                        >
+                                            <option value="">
+                                                Select industry
+                                            </option>
+
+                                            <option value="Government">
+                                                Government
+                                            </option>
+
+                                            <option value="Education">
+                                                Education
+                                            </option>
+
+                                            <option value="Healthcare">
+                                                Healthcare
+                                            </option>
+
+                                            <option value="Logistics">
+                                                Logistics
+                                            </option>
+
+                                            <option value="Manufacturing">
+                                                Manufacturing
+                                            </option>
+
+                                            <option value="Mining">
+                                                Mining
+                                            </option>
+
+                                            <option value="Retail">
+                                                Retail
+                                            </option>
+
+                                            <option value="Technology">
+                                                Technology
+                                            </option>
+
+                                            <option value="Construction">
+                                                Construction
+                                            </option>
+
+                                            <option value="Other">
+                                                Other
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationRegistrationNumber">
+                                            Registration number
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="organisationRegistrationNumber"
+                                            placeholder="Optional"
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationEmail">
+                                            Organisation email
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            id="organisationEmail"
+                                            autocomplete="email"
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationPhone">
+                                            Organisation phone
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="organisationPhone"
+                                            autocomplete="tel"
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationWebsite">
+                                            Website
+                                        </label>
+
+                                        <input
+                                            type="url"
+                                            id="organisationWebsite"
+                                            placeholder="https://example.com"
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationTaxNumber">
+                                            Tax number
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="organisationTaxNumber"
+                                            placeholder="Optional"
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationCountry">
+                                            Country
+                                        </label>
+
+                                        <select
+                                            id="organisationCountry"
+                                            required
+                                        >
+                                            <option value="">
+                                                Select country
+                                            </option>
+
+                                            <option value="South Africa">
+                                                South Africa
+                                            </option>
+
+                                            <option value="Botswana">
+                                                Botswana
+                                            </option>
+
+                                            <option value="Eswatini">
+                                                Eswatini
+                                            </option>
+
+                                            <option value="Lesotho">
+                                                Lesotho
+                                            </option>
+
+                                            <option value="Mozambique">
+                                                Mozambique
+                                            </option>
+
+                                            <option value="Namibia">
+                                                Namibia
+                                            </option>
+
+                                            <option value="Zimbabwe">
+                                                Zimbabwe
+                                            </option>
+
+                                            <option value="Other">
+                                                Other
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationCurrency">
+                                            Currency
+                                        </label>
+
+                                        <select
+                                            id="organisationCurrency"
+                                            required
+                                        >
+                                            <option value="">
+                                                Select currency
+                                            </option>
+
+                                            <option value="ZAR">
+                                                ZAR — South African Rand
+                                            </option>
+
+                                            <option value="BWP">
+                                                BWP — Botswana Pula
+                                            </option>
+
+                                            <option value="SZL">
+                                                SZL — Lilangeni
+                                            </option>
+
+                                            <option value="LSL">
+                                                LSL — Lesotho Loti
+                                            </option>
+
+                                            <option value="MZN">
+                                                MZN — Mozambican Metical
+                                            </option>
+
+                                            <option value="NAD">
+                                                NAD — Namibian Dollar
+                                            </option>
+
+                                            <option value="USD">
+                                                USD — United States Dollar
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="settings-input-group full-width">
+
+                                        <label for="organisationTimezone">
+                                            Time zone
+                                        </label>
+
+                                        <select
+                                            id="organisationTimezone"
+                                            required
+                                        >
+                                            <option value="">
+                                                Select time zone
+                                            </option>
+
+                                            <option value="Africa/Johannesburg">
+                                                Africa/Johannesburg
+                                            </option>
+
+                                            <option value="Africa/Gaborone">
+                                                Africa/Gaborone
+                                            </option>
+
+                                            <option value="Africa/Maputo">
+                                                Africa/Maputo
+                                            </option>
+
+                                            <option value="Africa/Windhoek">
+                                                Africa/Windhoek
+                                            </option>
+
+                                            <option value="Africa/Harare">
+                                                Africa/Harare
+                                            </option>
+
+                                            <option value="UTC">
+                                                UTC
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="settings-input-group full-width">
+
+                                        <label for="organisationAddress">
+                                            Street address
+                                        </label>
+
+                                        <textarea
+                                            id="organisationAddress"
+                                            rows="3"
+                                            placeholder="Enter organisation address"
+                                        ></textarea>
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationCity">
+                                            City
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="organisationCity"
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationProvince">
+                                            Province or region
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="organisationProvince"
+                                        >
+
+                                    </div>
+
+                                    <div class="settings-input-group">
+
+                                        <label for="organisationPostalCode">
+                                            Postal code
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="organisationPostalCode"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                                <div class="settings-form-actions">
+
+                                    <button
+                                        type="button"
+                                        id="resetOrganisationButton"
+                                        class="secondary-settings-button"
+                                    >
+                                        Reset Changes
+                                    </button>
+
+                                    <button
+                                        type="submit"
+                                        id="saveOrganisationButton"
+                                        class="primary-settings-button"
+                                    >
+                                        <i class="fa-solid fa-floppy-disk"></i>
+                                        Save Organisation
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </section>
+
+                        <!-- ==================================
+                             CATEGORIES
+                        =================================== -->
+
+                        <section
+                            id="categoriesSection"
+                            class="settings-section"
+                            data-section-panel="categories"
+                        >
+
+                            <div class="settings-section-header">
+
+                                <div>
+                                    <span>Asset classification</span>
+                                    <h3>Asset Categories</h3>
+
+                                    <p>
+                                        Create and manage the categories used
+                                        when registering organisational assets.
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="primary-settings-button"
+                                    data-open-reference-modal="categories"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                    Add Category
+                                </button>
+
+                            </div>
+
+                            <div class="reference-toolbar">
+
+                                <div class="reference-search">
+
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                                    <input
+                                        type="search"
+                                        id="categorySearch"
+                                        placeholder="Search categories"
+                                    >
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="refreshCategoriesButton"
+                                    class="secondary-settings-button"
+                                >
+                                    <i class="fa-solid fa-rotate"></i>
+                                    Refresh
+                                </button>
+
+                            </div>
+
+                            <div
+                                id="categoriesLoading"
+                                class="settings-loading"
+                            >
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                Loading categories...
+                            </div>
+
+                            <div
+                                id="categoriesEmptyState"
+                                class="reference-empty-state hidden"
+                            >
+                                <i class="fa-solid fa-layer-group"></i>
+
+                                <h4>No categories found</h4>
+
+                                <p>
+                                    Add your first asset category to organise
+                                    the asset register.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    class="primary-settings-button"
+                                    data-open-reference-modal="categories"
+                                >
+                                    Add Category
+                                </button>
+                            </div>
+
+                            <div
+                                id="categoriesTableWrapper"
+                                class="reference-table-wrapper hidden"
+                            >
+                                <table class="reference-table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Assets</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="categoriesTableBody"></tbody>
+
+                                </table>
+                            </div>
+
+                        </section>
+
+                        <!-- ==================================
+                             DEPARTMENTS
+                        =================================== -->
+
+                        <section
+                            id="departmentsSection"
+                            class="settings-section"
+                            data-section-panel="departments"
+                        >
+
+                            <div class="settings-section-header">
+
+                                <div>
+                                    <span>Organisational structure</span>
+                                    <h3>Departments</h3>
+
+                                    <p>
+                                        Manage the departments responsible for
+                                        organisational assets.
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="primary-settings-button"
+                                    data-open-reference-modal="departments"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                    Add Department
+                                </button>
+
+                            </div>
+
+                            <div class="reference-toolbar">
+
+                                <div class="reference-search">
+
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                                    <input
+                                        type="search"
+                                        id="departmentSearch"
+                                        placeholder="Search departments"
+                                    >
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="refreshDepartmentsButton"
+                                    class="secondary-settings-button"
+                                >
+                                    <i class="fa-solid fa-rotate"></i>
+                                    Refresh
+                                </button>
+
+                            </div>
+
+                            <div
+                                id="departmentsLoading"
+                                class="settings-loading"
+                            >
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                Loading departments...
+                            </div>
+
+                            <div
+                                id="departmentsEmptyState"
+                                class="reference-empty-state hidden"
+                            >
+                                <i class="fa-solid fa-sitemap"></i>
+
+                                <h4>No departments found</h4>
+
+                                <p>
+                                    Add a department to organise asset
+                                    ownership and responsibility.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    class="primary-settings-button"
+                                    data-open-reference-modal="departments"
+                                >
+                                    Add Department
+                                </button>
+                            </div>
+
+                            <div
+                                id="departmentsTableWrapper"
+                                class="reference-table-wrapper hidden"
+                            >
+                                <table class="reference-table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Assets</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="departmentsTableBody"></tbody>
+
+                                </table>
+                            </div>
+
+                        </section>
+
+                        <!-- ==================================
+                             LOCATIONS
+                        =================================== -->
+
+                        <section
+                            id="locationsSection"
+                            class="settings-section"
+                            data-section-panel="locations"
+                        >
+
+                            <div class="settings-section-header">
+
+                                <div>
+                                    <span>Physical asset locations</span>
+                                    <h3>Locations</h3>
+
+                                    <p>
+                                        Manage offices, warehouses, sites and
+                                        other asset storage locations.
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="primary-settings-button"
+                                    data-open-reference-modal="locations"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                    Add Location
+                                </button>
+
+                            </div>
+
+                            <div class="reference-toolbar">
+
+                                <div class="reference-search">
+
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                                    <input
+                                        type="search"
+                                        id="locationSearch"
+                                        placeholder="Search locations"
+                                    >
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="refreshLocationsButton"
+                                    class="secondary-settings-button"
+                                >
+                                    <i class="fa-solid fa-rotate"></i>
+                                    Refresh
+                                </button>
+
+                            </div>
+
+                            <div
+                                id="locationsLoading"
+                                class="settings-loading"
+                            >
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                Loading locations...
+                            </div>
+
+                            <div
+                                id="locationsEmptyState"
+                                class="reference-empty-state hidden"
+                            >
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                <h4>No locations found</h4>
+
+                                <p>
+                                    Add a location so assets can be assigned to
+                                    offices, warehouses or sites.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    class="primary-settings-button"
+                                    data-open-reference-modal="locations"
+                                >
+                                    Add Location
+                                </button>
+                            </div>
+
+                            <div
+                                id="locationsTableWrapper"
+                                class="reference-table-wrapper hidden"
+                            >
+                                <table class="reference-table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Assets</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="locationsTableBody"></tbody>
+
+                                </table>
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ==============================================
+         ADD / EDIT REFERENCE MODAL
+    =============================================== -->
+
+    <div
+        id="referenceModal"
+        class="settings-modal-overlay hidden"
+        aria-hidden="true"
+    >
+
+        <div class="settings-modal">
+
+            <div class="settings-modal-header">
+
+                <div>
+                    <span id="referenceModalEyebrow">
+                        Reference data
+                    </span>
+
+                    <h2 id="referenceModalTitle">
+                        Add Record
+                    </h2>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeReferenceModalButton"
+                    class="settings-modal-close"
+                    aria-label="Close modal"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <form
+                id="referenceForm"
+                class="reference-form"
+                novalidate
+            >
+
+                <input
+                    type="hidden"
+                    id="referenceRecordId"
+                >
+
+                <input
+                    type="hidden"
+                    id="referenceType"
+                >
+
+                <div
+                    id="referenceFormMessage"
+                    class="settings-form-message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <div class="settings-input-group">
+
+                    <label for="referenceName">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="referenceName"
+                        placeholder="Enter name"
+                        required
+                    >
+
+                </div>
+
+                <div class="settings-input-group">
+
+                    <label for="referenceDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="referenceDescription"
+                        rows="5"
+                        placeholder="Enter an optional description"
+                    ></textarea>
+
+                </div>
+
+                <div class="settings-modal-actions">
+
+                    <button
+                        type="button"
+                        id="cancelReferenceButton"
+                        class="secondary-settings-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="saveReferenceButton"
+                        class="primary-settings-button"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Record
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ==============================================
+         DELETE CONFIRMATION MODAL
+    =============================================== -->
+
+    <div
+        id="deleteReferenceModal"
+        class="settings-modal-overlay hidden"
+        aria-hidden="true"
+    >
+
+        <div class="settings-modal delete-reference-modal">
+
+            <div class="delete-reference-icon">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+
+            <h2>Delete record?</h2>
+
+            <p id="deleteReferenceText">
+                This record will be permanently removed.
+            </p>
+
+            <input
+                type="hidden"
+                id="deleteReferenceId"
+            >
+
+            <input
+                type="hidden"
+                id="deleteReferenceType"
+            >
+
+            <div
+                id="deleteReferenceMessage"
+                class="settings-form-message"
+                role="alert"
+                aria-live="polite"
+            ></div>
+
+            <div class="settings-modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelDeleteReferenceButton"
+                    class="secondary-settings-button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    id="confirmDeleteReferenceButton"
+                    class="danger-settings-button"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="config.js"></script>
+
+    <script src="dashboard-auth.js"></script>
+
+    <script src="settings.js"></script>
+
+</body>
+</html>
