@@ -43,18 +43,7 @@ document.querySelectorAll(".card, .industry, .timeline-card, .dashboard")
 
 });
 
-// Reserve Form
-const reserveForm=document.getElementById("reserveForm");
 
-if(reserveForm){
-
-reserveForm.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-alert("🎉 Thank you! Your reservation request has been received. AssetsOS will contact you soon.");
-
-reserveForm.reset();
 
 });
 
