@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Create your AssetsOS account."
+    >
+
+    <title>Create Account | AssetsOS</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="signup.css"
+    >
+</head>
+
+<body>
+
+    <main class="signup-page">
+
+        <section class="signup-visual">
+
+            <a
+                class="brand"
+                href="index.html"
+                aria-label="AssetsOS home"
+            >
+                <div class="brand-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div>
+                    <strong>AssetsOS</strong>
+                    <span>
+                        A Sibusisiwe Industries company
+                    </span>
+                </div>
+            </a>
+
+            <div class="visual-content">
+
+                <span class="eyebrow">
+                    Enterprise asset intelligence
+                </span>
+
+                <h1>
+                    Take control of every asset from one workspace.
+                </h1>
+
+                <p>
+                    Register your organisation, track assets,
+                    manage locations and maintain a reliable
+                    digital asset register.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check"></i>
+
+                        <span>
+                            Secure organisation workspace
+                        </span>
+                    </div>
+
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check"></i>
+
+                        <span>
+                            Live asset records and reporting
+                        </span>
+                    </div>
+
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check"></i>
+
+                        <span>
+                            Role-based access control
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="visual-footer">
+                <span>
+                    Built by Sibusisiwe Industries (Pty) Ltd
+                </span>
+            </div>
+
+        </section>
+
+        <section class="signup-panel">
+
+            <div class="signup-card">
+
+                <div class="mobile-brand">
+
+                    <a href="index.html">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>AssetsOS</span>
+                    </a>
+
+                </div>
+
+                <div class="signup-heading">
+
+                    <span>Create your workspace</span>
+
+                    <h2>Start using AssetsOS</h2>
+
+                    <p>
+                        Create your account. You will verify your
+                        email before accessing the dashboard.
+                    </p>
+
+                </div>
+
+                <div
+                    id="signupMessage"
+                    class="signup-message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <form
+                    id="signupForm"
+                    novalidate
+                >
+
+                    <div class="input-group">
+
+                        <label for="fullName">
+                            Full name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="name@company.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                        <small>
+                            Use at least 8 characters.
+                        </small>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="confirmPassword">
+                            Confirm password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Repeat your password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="toggleConfirmPassword"
+                                aria-label="Show confirmed password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <label class="terms-row">
+
+                        <input
+                            type="checkbox"
+                            id="acceptTerms"
+                            required
+                        >
+
+                        <span>
+                            I agree to the
+                            <a href="#">Terms of Service</a>
+                            and
+                            <a href="#">Privacy Policy</a>.
+                        </span>
+
+                    </label>
+
+                    <button
+                        type="submit"
+                        id="signupButton"
+                        class="signup-button"
+                    >
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Create Account</span>
+                    </button>
+
+                </form>
+
+                <div class="divider">
+                    <span>Already registered?</span>
+                </div>
+
+                <a
+                    href="login.html"
+                    class="login-link"
+                >
+                    Sign in to your account
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+                <p class="security-note">
+                    <i class="fa-solid fa-lock"></i>
+                    Your account is protected by Supabase
+                    authentication.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="config.js"></script>
+
+    <script src="signup.js"></script>
+
+</body>
+</html>
