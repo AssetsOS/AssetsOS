@@ -1307,11 +1307,267 @@ async function removeIncompleteOrganisation(
 }
 // ======================================================
 // PART 4
-// Final onboarding submission, recovery and redirect
+// Finish onboarding and create complete workspace
 // ======================================================
 
 // ======================================================
-// COMPLETE ONBOARDING
+// CREATE DEFAULT WORKSPACE DATA
+// ======================================================
+
+async function createDefaultWorkspaceData(
+    organisationId
+) {
+    const userId =
+        onboardingState.user.id;
+
+    const departments = [
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Administration",
+            description:
+                "Administrative department.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Operations",
+            description:
+                "Operational department.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Information Technology",
+            description:
+                "Technology and systems department.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Finance",
+            description:
+                "Finance and accounting department.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Human Resources",
+            description:
+                "Human resources department.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Procurement",
+            description:
+                "Procurement and supplier management.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Maintenance",
+            description:
+                "Asset maintenance department.",
+            created_by:
+                userId
+        }
+    ];
+
+    const categories = [
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Computers",
+            description:
+                "Desktop computers and workstations.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Laptops",
+            description:
+                "Portable computers and notebooks.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Servers",
+            description:
+                "Physical servers and server equipment.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Networking",
+            description:
+                "Routers, switches and networking equipment.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Furniture",
+            description:
+                "Office furniture and fixtures.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Vehicles",
+            description:
+                "Organisation vehicles and fleet assets.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Mobile Devices",
+            description:
+                "Mobile phones, tablets and handheld devices.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Printers",
+            description:
+                "Printers, scanners and multifunction devices.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Software Licences",
+            description:
+                "Software licences and digital subscriptions.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Office Equipment",
+            description:
+                "General office equipment and appliances.",
+            created_by:
+                userId
+        }
+    ];
+
+    const locations = [
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Head Office",
+            description:
+                "Primary organisation office.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Warehouse",
+            description:
+                "Main storage and warehouse facility.",
+            created_by:
+                userId
+        },
+        {
+            organisation_id:
+                organisationId,
+            name:
+                "Remote Site",
+            description:
+                "General remote operating location.",
+            created_by:
+                userId
+        }
+    ];
+
+    const [
+        departmentResult,
+        categoryResult,
+        locationResult
+    ] = await Promise.all([
+        onboardingSupabase
+            .from("departments")
+            .insert(departments),
+
+        onboardingSupabase
+            .from("asset_categories")
+            .insert(categories),
+
+        onboardingSupabase
+            .from("locations")
+            .insert(locations)
+    ]);
+
+    if (departmentResult.error) {
+        throw new Error(
+            `Departments could not be created. ${departmentResult.error.message}`
+        );
+    }
+
+    if (categoryResult.error) {
+        throw new Error(
+            `Asset categories could not be created. ${categoryResult.error.message}`
+        );
+    }
+
+    if (locationResult.error) {
+        throw new Error(
+            `Locations could not be created. ${locationResult.error.message}`
+        );
+    }
+}
+
+// ======================================================
+// FINAL ONBOARDING SUBMISSION
 // ======================================================
 
 onboardingForm?.addEventListener(
@@ -1341,7 +1597,7 @@ onboardingForm?.addEventListener(
 
         if (!onboardingState.user?.id) {
             showOnboardingMessage(
-                "Your login session could not be verified. Please sign in again.",
+                "Your login session could not be verified. Sign in again.",
                 "error"
             );
 
@@ -1350,12 +1606,9 @@ onboardingForm?.addEventListener(
 
         setFinishButtonLoading(true);
 
-        let createdOrganisationId = null;
-        let membershipCreated = false;
+        let organisationId = null;
 
         try {
-            // Prevent users from creating another workspace
-            // by submitting twice or reopening onboarding.
             const existingMembership =
                 await userAlreadyHasOrganisation();
 
@@ -1364,7 +1617,7 @@ onboardingForm?.addEventListener(
                     ?.organisation_id
             ) {
                 showOnboardingMessage(
-                    "Your organisation workspace already exists. Redirecting to the dashboard...",
+                    "Your workspace already exists. Redirecting to the dashboard...",
                     "success"
                 );
 
@@ -1377,57 +1630,83 @@ onboardingForm?.addEventListener(
                 return;
             }
 
-            // Step 1: Create organisation
+            // ------------------------------------------
+            // 1. Create organisation
+            // ------------------------------------------
+
             const organisation =
                 await createOrganisation();
 
-            createdOrganisationId =
+            organisationId =
                 organisation.id;
 
-            // Step 2: Create owner membership
+            // ------------------------------------------
+            // 2. Create owner membership
+            // ------------------------------------------
+
             await createOwnerMembership(
-                organisation.id
+                organisationId
             );
 
-            membershipCreated = true;
+            // ------------------------------------------
+            // 3. Create default organisation data
+            // ------------------------------------------
 
-            // Step 3: Upload optional logo
-            let logoUrl = null;
+            await createDefaultWorkspaceData(
+                organisationId
+            );
+
+            // ------------------------------------------
+            // 4. Upload optional organisation logo
+            // ------------------------------------------
 
             if (
                 onboardingState
                     .selectedLogoFile
             ) {
                 try {
-                    logoUrl =
+                    const logoUrl =
                         await uploadOrganisationLogo(
-                            organisation.id
+                            organisationId
                         );
 
                     if (logoUrl) {
                         await saveOrganisationLogo(
-                            organisation.id,
+                            organisationId,
                             logoUrl
                         );
                     }
                 } catch (logoError) {
                     console.error(
-                        "Organisation logo upload failed:",
+                        "Logo upload failed:",
                         logoError
                     );
 
-                    showOnboardingMessage(
-                        "Your workspace was created, but the logo could not be uploaded. You can upload it later from Settings.",
-                        "warning"
-                    );
+                    /*
+                     * The workspace remains valid even
+                     * when the optional logo fails.
+                     */
                 }
             }
 
-            // Step 4: Update user profile.
-            // This does not prevent onboarding from succeeding.
-            await updateUserProfile(
-                organisation.id
-            );
+            // ------------------------------------------
+            // 5. Attempt profile update
+            // ------------------------------------------
+
+            try {
+                await updateUserProfile(
+                    organisationId
+                );
+            } catch (profileError) {
+                console.warn(
+                    "Profile update skipped:",
+                    profileError
+                );
+            }
+
+            // ------------------------------------------
+            // 6. Success and redirect
+            // ------------------------------------------
 
             showOnboardingMessage(
                 "Your AssetsOS workspace has been created successfully. Redirecting to the dashboard...",
@@ -1456,69 +1735,49 @@ onboardingForm?.addEventListener(
 
         } catch (error) {
             console.error(
-                "AssetsOS onboarding failed:",
+                "Workspace creation failed:",
                 error
             );
-
-            /*
-             * Only remove the organisation when the
-             * membership was not successfully created.
-             *
-             * Once membership exists, the workspace is
-             * valid and should not be deleted because a
-             * later optional operation failed.
-             */
-            if (
-                createdOrganisationId &&
-                !membershipCreated
-            ) {
-                await removeIncompleteOrganisation(
-                    createdOrganisationId
-                );
-            }
 
             let message =
                 error instanceof Error
                     ? error.message
                     : String(error);
 
-            const normalisedMessage =
+            const lowerMessage =
                 message.toLowerCase();
 
             if (
-                normalisedMessage.includes(
-                    "duplicate key"
-                ) ||
-                normalisedMessage.includes(
-                    "already exists"
-                )
-            ) {
-                message =
-                    "An organisation workspace may already exist for this account. Refresh the page or sign in again.";
-            }
-
-            if (
-                normalisedMessage.includes(
+                lowerMessage.includes(
                     "row-level security"
                 ) ||
-                normalisedMessage.includes(
+                lowerMessage.includes(
                     "permission denied"
                 )
             ) {
                 message =
-                    "Supabase blocked the workspace creation request. The organisation security policies need to be checked.";
+                    "Supabase security blocked the request. The organisation policies need to be checked.";
             }
 
             if (
-                normalisedMessage.includes(
+                lowerMessage.includes(
+                    "duplicate key"
+                )
+            ) {
+                message =
+                    "This workspace or membership may already exist.";
+            }
+
+            if (
+                lowerMessage.includes(
                     "failed to fetch"
                 ) ||
-                normalisedMessage.includes(
+                lowerMessage.includes(
                     "network"
                 )
             ) {
                 message =
-                    "AssetsOS could not connect to Supabase. Check your internet connection and try again.";
+                    "AssetsOS could not connect to Supabase. Check your internet connection.";
             }
 
             showOnboardingMessage(
@@ -1550,7 +1809,7 @@ onboardingSupabase.auth.onAuthStateChange(
 );
 
 // ======================================================
-// PREVENT ACCIDENTAL FILE PREVIEW MEMORY LEAKS
+// CLEAN UP LOGO PREVIEW
 // ======================================================
 
 window.addEventListener(
@@ -1567,4 +1826,3 @@ window.addEventListener(
         }
     }
 );
-
